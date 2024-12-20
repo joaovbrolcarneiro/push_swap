@@ -21,6 +21,6 @@ void	sort_three(t_stack_node **a)
 		ra(a, false);
 	else if ((*a)->next == highest_value_node)
 		rra(a, false);
-	if ((*a)->content > (*a)->next->content)
+	if ((*a)->nbr > (*a)->next->nbr)
 		sa(a, false);
 }

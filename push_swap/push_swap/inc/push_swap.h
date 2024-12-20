@@ -15,8 +15,8 @@
 
 # include <stdbool.h>
 # include <limits.h>
-# include "../libft/inc/libft.h"
 # include "../libft/inc/ft_printf.h"
+# include <stdlib.h>
 
 typedef struct s_stack_node
 {
@@ -27,7 +27,7 @@ typedef struct s_stack_node
 	bool				cheapest;
 	struct s_stack_node	*target_node;
 	struct s_stack_node	*next;
-	struct s_stack_node	*prev;
+	struct s_stack_node	*previous;
 }	t_stack_node;
 
 int				check_syntax(char *str);

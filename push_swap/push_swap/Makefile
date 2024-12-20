@@ -20,18 +20,18 @@ SRC_DIR				= srcs/
 OBJ_DIR				= obj/
 
 # Compiler and CFlags
-CC					= gcc
-CFLAGS				= -Wall -Werror -Wextra -I
+CC					= cc
+CFLAGS				= -g -Wall -Werror -Wextra -I
 RM					= rm -f
 
 # Source Files
 COMMANDS_DIR		=	$(SRC_DIR)commands/push.c \
-						$(SRC_DIR)commands/rev_rotate.c \
-						$(SRC_DIR)commands/rotate.c \
-						$(SRC_DIR)commands/sort_stacks.c \
+						$(SRC_DIR)commands/rev_rot.c \
+						$(SRC_DIR)commands/rot.c \
+						$(SRC_DIR)commands/stack_sorting.c \
 						$(SRC_DIR)commands/sort_three.c \
-						$(SRC_DIR)commands/min_on_top \
-						$(SRC_DIR)commands/swap.c
+						$(SRC_DIR)commands/min_on_top.c \
+						$(SRC_DIR)commands/swaps.c
 
 PUSH_SWAP_DIR		=	$(SRC_DIR)push_swap/errors.c \
 						$(SRC_DIR)push_swap/init_stack.c \
