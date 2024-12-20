@@ -1,12 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init_stack.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jbrol-ca <jbrol-ca@student.42porto.com>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/20 12:00:00 by jbrol-ca          #+#    #+#             */
+/*   Updated: 2024/12/20 12:56:52 by jbrol-ca         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../inc/push_swap.h"
 
-static long	ft_atol(const char *s) // Function to convert a string into a long value
+static long	ft_atol(const char *s)
 {
 	long	result;
 	int		sign;
 
 	result = 0;
-	sign = 1; 
+	sign = 1;
 	while (*s == ' ' || *s == '\t' || *s == '\n' || \
 			*s == '\r' || *s == '\f' || *s == '\v')
 		s++;
@@ -21,7 +33,7 @@ static long	ft_atol(const char *s) // Function to convert a string into a long v
 	return (result * sign);
 }
 
-static void	append_node(t_stack_node **stack, int n) // Function to append a new node to the linked list
+static void	append_node(t_stack_node **stack, int n)
 {
 	t_stack_node	*node;
 	t_stack_node	*last_node;
@@ -47,7 +59,7 @@ static void	append_node(t_stack_node **stack, int n) // Function to append a new
 	}
 }
 
-void	init_stack_a(t_stack_node **a, char **argv) // Function to initialize stack `a`
+void	init_stack_a(t_stack_node **a, char **argv)
 {
 	long	n;
 	int		i;
@@ -67,7 +79,7 @@ void	init_stack_a(t_stack_node **a, char **argv) // Function to initialize stack
 	}
 }
 
-t_stack_node	*get_cheapest(t_stack_node *stack) // Function to find the cheapest node
+t_stack_node	*get_cheapest(t_stack_node *stack)
 {
 	if (!stack)
 		return (NULL);
@@ -80,9 +92,8 @@ t_stack_node	*get_cheapest(t_stack_node *stack) // Function to find the cheapest
 	return (NULL);
 }
 
-void	prep_for_push(t_stack_node **stack,
-						t_stack_node *top_node,
-						char stack_name) // Function to move a required node to the top
+void	prep_for_push(t_stack_node **stack, t_stack_node *top_node,
+						char stack_name)
 {
 	while (*stack != top_node)
 	{
@@ -99,6 +110,6 @@ void	prep_for_push(t_stack_node **stack,
 				rb(stack, false);
 			else
 				rrb(stack, false);
-		}	
+		}
 	}
 }
