@@ -87,3 +87,18 @@ char	**split(char *s, char c) // Define a function that returns the substrings i
 	result_array[i] = NULL; // Properly null terminate the array
 	return (result_array);
 }
+
+void	free_split_result(char **result_array)
+{
+	int	i;
+
+	i = 0;
+	if (!result_array)
+		return;
+	while (result_array[i])
+	{
+		free(result_array[i]);  // Free each word
+		i++;
+	}
+	free(result_array);  // Free the result array itself
+}

@@ -34,5 +34,7 @@ int	main(int argc, char **argv)
 			sort_stacks(&stack_a, &stack_b);
 	}
 	free_stack_memory(&stack_a);
+	free_split_result(argv);
+
 	return (0);
 }

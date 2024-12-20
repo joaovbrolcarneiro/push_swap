@@ -61,5 +61,5 @@ void			pb(t_stack_node **b, t_stack_node **a, bool print);
 void			sort_three(t_stack_node **a);
 void			sort_stacks(t_stack_node **a, t_stack_node **b);
 void			min_on_top(t_stack_node **stack_a);
-
+void			free_split_result(char **result_array);
 #endif
