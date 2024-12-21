@@ -20,7 +20,7 @@ OBJ_DIR             = ./obj
 
 # Compiler and Flags
 CC                  = cc
-CFLAGS              = -g -Wall -Wextra -Werror -I$(INC_DIR)
+CFLAGS              = -Wall -Wextra -Werror -I$(INC_DIR)
 RM                  = rm -f
 
 # Source Files
