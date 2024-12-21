@@ -19,8 +19,8 @@ static long	ft_atol(const char *s)
 
 	result = 0;
 	sign = 1;
-	while (*s == ' ' || *s == '\t' || *s == '\n' || \
-			*s == '\r' || *s == '\f' || *s == '\v')
+	while (*s == ' ' || *s == '\t' || *s == '\n' || *s == '\r' || \
+			*s == '\f' || *s == '\v')
 		s++;
 	if (*s == '-' || *s == '+')
 	{
@@ -36,40 +36,51 @@ static long	ft_atol(const char *s)
 	return (result * sign);
 }
 
-int	main(int argc, char **argv)
+static void	process_single_argument(char *syntax_test)
 {
-	t_stack_node	*stack_a;
-	t_stack_node	*stack_b;
-	char			*syntax_test;
-	int				n;
-	int				i;
+	int		n;
+	int		i;
 
-	stack_a = NULL;
-	stack_b = NULL;
+	i = 0;
+	while (syntax_test[i])
+	{
+		while (syntax_test[i] == ' ')
+			i++;
+		if (check_syntax(&syntax_test[i]))
+			free_and_print_error(NULL);
+		n = ft_atol(&syntax_test[i]);
+		if (n > INT_MAX || n < INT_MIN)
+			free_and_print_error(NULL);
+		if (check_duplicate(NULL, (int)n))
+			free_and_print_error(NULL);
+		while (syntax_test[i] != ' ' && syntax_test[i] != '\0')
+			i++;
+	}
+}
+
+static int	handle_empty_arguments(int argc, char **argv)
+{
 	if (argc == 1 || (argc == 2 && !argv[1][0]))
 	{
 		if (argc == 2)
 			ft_printf("Error\n");
 		return (1);
 	}
-	if (argc == 2)
+	return (0);
+}
+
+int	main(int argc, char **argv)
+{
+	t_stack_node	*stack_a;
+	t_stack_node	*stack_b;
+
+	stack_a = NULL;
+	stack_b = NULL;
+	if (handle_empty_arguments(argc, argv))
+		return (1);
+	if (argc == 2 && argv[1][0] != '\0')
 	{
-		syntax_test = argv[1];
-		i = 0;
-		while (syntax_test[i] != '\0')
-		{
-			while (syntax_test[i] == ' ')
-				i++;
-			if (check_syntax(&syntax_test[i]))
-				free_and_print_error(NULL);
-			n = ft_atol(&syntax_test[i]);
-			if (n > INT_MAX || n < INT_MIN)
-				free_and_print_error(NULL);
-			if (check_duplicate(stack_a, (int)n))
-				free_and_print_error(NULL);
-			while (syntax_test[i] != ' ' && syntax_test[i] != '\0')
-				i++;
-		}
+		process_single_argument(argv[1]);
 		argv = split(argv[1], ' ');
 	}
 	init_stack_a(&stack_a, argv + 1);
