@@ -34,6 +34,7 @@ COMMANDS_DIR		=	$(SRC_DIR)commands/push.c \
 						$(SRC_DIR)commands/swaps.c
 
 PUSH_SWAP_DIR		=	$(SRC_DIR)push_swap/errors.c \
+						$(SRC_DIR)push_swap/pre_errors.c \
 						$(SRC_DIR)push_swap/init_stack.c \
 						$(SRC_DIR)push_swap/stack_b_to_a.c \
 						$(SRC_DIR)push_swap/main.c \

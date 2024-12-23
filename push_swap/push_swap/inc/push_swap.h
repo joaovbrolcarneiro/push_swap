@@ -30,6 +30,11 @@ typedef struct s_stack_node
 	struct s_stack_node	*previous;
 }	t_stack_node;
 
+int				count_elements_in_array(char **array);
+void			sort_numbers(char **numbers);
+int				check_syntax_pre(char *str);
+int				check_int_range_pre(long n);
+int				check_duplicate_pre(int value, int *seen_numbers, int seen_size);
 int				check_syntax(char *str);
 int				check_duplicate(t_stack_node *stack, int value);
 void			free_stack_memory(t_stack_node **stack);
