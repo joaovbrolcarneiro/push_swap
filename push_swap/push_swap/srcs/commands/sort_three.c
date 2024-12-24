@@ -24,3 +24,55 @@ void	sort_three(t_stack_node **a)
 	if ((*a)->nbr > (*a)->next->nbr)
 		sa(a, false);
 }
+
+void	sort_numbers(char **numbers)
+{
+	int	n1;
+	int	n2;
+	int	n3;
+	int	size;
+
+	n1 = ft_atol(numbers[0]);
+	n2 = ft_atol(numbers[1]);
+	size = count_elements_in_array(numbers);
+	if (size == 2)
+		printf ("sa\n");
+	if (size == 3)
+	{
+		n3 = ft_atol(numbers[2]);
+
+		if (n1 > n2 && n1 > n3)
+		{
+			if (n2 > n3)
+				ft_printf("sa\nra\n"); // sa: Swap top two, ra: Rotate
+			else
+				ft_printf("rra\n"); // rra: Reverse rotate
+		}
+		else if (n2 > n1 && n2 > n3)
+		{
+			if (n1 > n3)
+				ft_printf("sa\n"); // sa: Swap top two
+			else
+				ft_printf("ra\n"); // ra: Rotate
+		}
+		else if (n3 > n1 && n3 > n2)
+		{
+			if (n1 > n2)
+				ft_printf("sa\nra\n"); // sa: Swap top two, ra: Rotate
+			else
+				ft_printf("rra\n"); // rra: Reverse rotate
+		}
+	}
+}
+
+int	count_elements_in_array(char **array)
+{
+	int	count;
+
+	count = 0;
+	while (array[count] != NULL)
+	{
+		count++;
+	}
+	return (count);
+}

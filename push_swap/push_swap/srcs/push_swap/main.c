@@ -12,30 +12,6 @@
 
 #include "../../inc/push_swap.h"
 
-static long	ft_atol(const char *s)
-{
-	long	result;
-	int		sign;
-
-	result = 0;
-	sign = 1;
-	while (*s == ' ' || *s == '\t' || *s == '\n' || *s == '\r' || \
-			*s == '\f' || *s == '\v')
-		s++;
-	if (*s == '-' || *s == '+')
-	{
-		if (*s == '-')
-			sign = -1;
-		s++;
-	}
-	while ((*s >= '0' && *s <= '9'))
-	{
-		result = result * 10 + (*s - '0');
-		s++;
-	}
-	return (result * sign);
-}
-
 static void	process_single_argument(char *syntax_test)
 {
 	int		n;
@@ -74,62 +50,6 @@ static int	handle_empty_arguments(int argc, char **argv)
 	return (0);
 }
 
-void	sort_numbers(char **numbers)
-{
-	int	n1;
-	int	n2;
-	int	n3;
-	int	size;
-
-	n1 = ft_atol(numbers[0]);
-	n2 = ft_atol(numbers[1]);
-	size = count_elements_in_array(numbers);
-
-	if (size == 2)
-	{
-		if (n1 > n2)
-			ft_printf("sa\n"); // Swap the two numbers
-		return ;
-	}
-	n3 = ft_atol(numbers[2]);
-	if (size == 3)
-	{
-		if (n1 > n2 && n1 > n3)
-		{
-			if (n2 > n3)
-				ft_printf("sa\nra\n"); // sa: Swap top two, ra: Rotate
-			else
-				ft_printf("rra\n"); // rra: Reverse rotate
-		}
-		else if (n2 > n1 && n2 > n3)
-		{
-			if (n1 > n3)
-				ft_printf("sa\n"); // sa: Swap top two
-			else
-				ft_printf("ra\n"); // ra: Rotate
-		}
-		else if (n3 > n1 && n3 > n2)
-		{
-			if (n1 > n2)
-				ft_printf("sa\nra\n"); // sa: Swap top two, ra: Rotate
-			else
-				ft_printf("rra\n"); // rra: Reverse rotate
-		}
-	}
-}
-
-int	count_elements_in_array(char **array)
-{
-	int	count;
-
-	count = 0;
-	while (array[count] != NULL)
-	{
-		count++;
-	}
-	return (count);
-}
-
 int	main(int argc, char **argv)
 {
 	t_stack_node	*stack_a;
@@ -158,7 +78,6 @@ int	main(int argc, char **argv)
 			sort_stacks(&stack_a, &stack_b);
 	}
 	free_stack_memory(&stack_a);
-
 	if (argc == 2)
 	{	
 	free_split_result(argv);

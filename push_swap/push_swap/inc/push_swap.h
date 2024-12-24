@@ -30,6 +30,7 @@ typedef struct s_stack_node
 	struct s_stack_node	*previous;
 }	t_stack_node;
 
+long			ft_atol(const char *s);
 int				count_elements_in_array(char **array);
 void			sort_numbers(char **numbers);
 int				check_syntax_pre(char *str);

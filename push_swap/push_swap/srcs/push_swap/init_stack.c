@@ -12,7 +12,7 @@
 
 #include "../../inc/push_swap.h"
 
-static long	ft_atol(const char *s)
+long	ft_atol(const char *s)
 {
 	long	result;
 	int		sign;
