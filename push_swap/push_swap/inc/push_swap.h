@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbrol-ca <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jbrol-ca <jbrol-ca@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 20:58:11 by jbrol-ca          #+#    #+#             */
-/*   Updated: 2024/12/19 21:55:59 by jbrol-ca         ###   ########.fr       */
+/*   Updated: 2024/12/26 20:52:29 by jbrol-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ typedef struct s_stack_node
 	struct s_stack_node	*previous;
 }	t_stack_node;
 
+void			handle_two_numbers(int n1, int n2);
+int				ft_isdigit(int c);
 int				count_elements_in_array(char **array);
 void			sort_numbers(char **numbers);
 int				check_syntax_pre(char *str);

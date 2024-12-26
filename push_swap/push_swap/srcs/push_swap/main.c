@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbrol-ca <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jbrol-ca <jbrol-ca@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 20:58:11 by jbrol-ca          #+#    #+#             */
-/*   Updated: 2024/12/20 13:04:35 by jbrol-ca         ###   ########.fr       */
+/*   Updated: 2024/12/26 22:04:42 by jbrol-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,13 +63,37 @@ static void	process_single_argument(char *syntax_test)
 	}
 }
 
+int	ft_isdigit(int c)
+{
+	if (c >= '0' && c <= '9')
+		return (1);
+	return (0);
+}
+
 static int	handle_empty_arguments(int argc, char **argv)
 {
-	if (argc == 1 || ((argc == 2) && (!argv[1][0] || argv[1][0] == ' ')))
-	{
-		if (argc == 2)
-			ft_printf("Error\n");
+	char	*input;
+
+	if (argc == 1)
 		return (1);
+	if (argc == 2)
+	{
+		input = argv[1];
+		if (input[0] == '\0' || (input[0] == ' ' && input[1] == '\0'))
+		{
+			printf("Error\n");
+			return (1);
+		}
+		while (*input == ' ')
+			input++;
+		if (ft_isdigit(*input))
+		{
+			while (ft_isdigit(*input))
+				input++;
+			if (*input == '\0')
+				return (1);
+			return (0);
+		}
 	}
 	return (0);
 }
@@ -87,7 +111,7 @@ void	sort_numbers(char **numbers)
 
 	if (size == 2)
 	{
-		if (n1 > n2)
+		if (n1 < n2)
 			ft_printf("sa\n"); // Swap the two numbers
 		return ;
 	}
