@@ -6,11 +6,28 @@
 /*   By: jbrol-ca <jbrol-ca@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 20:58:11 by jbrol-ca          #+#    #+#             */
-/*   Updated: 2024/12/27 16:19:51 by jbrol-ca         ###   ########.fr       */
+/*   Updated: 2024/12/27 17:03:04 by jbrol-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/push_swap.h"
+
+static int	check_sign_and_digits(char *str, int *i, int *sign_found)
+{
+	if (str[*i] == '+' || str[*i] == '-')
+	{
+		if (*i > 0 && str[*i - 1] != ' ' && str[*i - 1] != '+'
+			&& str[*i - 1] != '-')
+			return (1);
+		if (*sign_found)
+			return (1);
+		*sign_found = 1;
+		(*i)++;
+		if (!(str[*i] >= '0' && str[*i] <= '9'))
+			return (1);
+	}
+	return (0);
+}
 
 int	check_syntax_pre(char *str)
 {
@@ -23,18 +40,14 @@ int	check_syntax_pre(char *str)
 	{
 		if (str[i] == ' ')
 			i++;
-		else if (str[i] == '+' || str[i] == '-')
-		{
-			if (i > 0 && str[i - 1] != ' ' || sign_found)
-				return (1);
-			sign_found = 1;
-			i++;
-			if (!(str[i] >= '0' && str[i] <= '9'))
-				return (1);
-		}
+		else if (check_sign_and_digits(str, &i, &sign_found))
+			return (1);
 		else if (str[i] >= '0' && str[i] <= '9')
+		{
 			while (str[i] >= '0' && str[i] <= '9')
 				i++;
+			sign_found = 0;
+		}
 		else
 			return (1);
 	}

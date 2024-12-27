@@ -6,7 +6,7 @@
 /*   By: jbrol-ca <jbrol-ca@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 20:58:11 by jbrol-ca          #+#    #+#             */
-/*   Updated: 2024/12/27 16:02:59 by jbrol-ca         ###   ########.fr       */
+/*   Updated: 2024/12/27 16:57:35 by jbrol-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,7 @@ static void	process_single_argument(char *syntax_test)
 		if (n > INT_MAX || n < INT_MIN)
 			free_and_print_error(NULL);
 		if (check_dup_pre((int)n, seen_numbers, seen_size))
-		{
 			free_and_print_error(NULL);
-		}
 		seen_numbers[seen_size++] = (int)n;
 		while (syntax_test[i] != ' ' && syntax_test[i] != '\0')
 			i++;
