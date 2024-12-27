@@ -6,7 +6,7 @@
 /*   By: jbrol-ca <jbrol-ca@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 20:58:11 by jbrol-ca          #+#    #+#             */
-/*   Updated: 2024/12/26 22:04:42 by jbrol-ca         ###   ########.fr       */
+/*   Updated: 2024/12/27 13:10:31 by jbrol-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static void	process_single_argument(char *syntax_test)
 {
 	int		n;
 	int		i;
-	int		seen_numbers[1000];
+	int		seen_numbers[100000];
 	int		seen_size;
 
 	seen_size = 0;
@@ -111,7 +111,7 @@ void	sort_numbers(char **numbers)
 
 	if (size == 2)
 	{
-		if (n1 < n2)
+		if (n1 > n2)
 			ft_printf("sa\n"); // Swap the two numbers
 		return ;
 	}
@@ -168,7 +168,10 @@ int	main(int argc, char **argv)
 	{
 		process_single_argument(argv[1]);
 		argv = split(argv[1], ' ');
-		sort_numbers(argv);
+		//for (int i = 0; argv[i]; i++)
+	//printf("argv[%d] = %s\n", i, argv[i]);
+
+		//sort_numbers(argv+1);
 	}
 		init_stack_a(&stack_a, argv+1);
 
