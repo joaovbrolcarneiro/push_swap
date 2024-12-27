@@ -6,7 +6,7 @@
 /*   By: jbrol-ca <jbrol-ca@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 20:58:11 by jbrol-ca          #+#    #+#             */
-/*   Updated: 2024/12/26 20:52:29 by jbrol-ca         ###   ########.fr       */
+/*   Updated: 2024/12/27 15:52:35 by jbrol-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,14 @@ typedef struct s_stack_node
 	struct s_stack_node	*previous;
 }	t_stack_node;
 
+long			ft_atol(const char *s);
 void			handle_two_numbers(int n1, int n2);
 int				ft_isdigit(int c);
 int				count_elements_in_array(char **array);
 void			sort_numbers(char **numbers);
 int				check_syntax_pre(char *str);
 int				check_int_range_pre(long n);
-int				check_duplicate_pre(int value, int *seen_numbers, int seen_size);
+int				check_dup_pre(int value, int *seen_numbers, int seen_size);
 int				check_syntax(char *str);
 int				check_duplicate(t_stack_node *stack, int value);
 void			free_stack_memory(t_stack_node **stack);

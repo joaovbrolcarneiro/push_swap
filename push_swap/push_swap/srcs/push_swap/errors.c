@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbrol-ca <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jbrol-ca <jbrol-ca@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 12:00:00 by jbrol-ca          #+#    #+#             */
-/*   Updated: 2024/12/20 12:44:36 by jbrol-ca         ###   ########.fr       */
+/*   Updated: 2024/12/27 15:21:03 by jbrol-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,10 @@ void	free_stack_memory(t_stack_node **stack)
 
 void	free_and_print_error(t_stack_node **stack)
 {
-	free_stack_memory(stack);
+	if (stack)
+	{
+		free_stack_memory(stack);
+	}
 	ft_printf("Error\n");
 	exit(1);
 }

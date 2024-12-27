@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   init_stack.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbrol-ca <jbrol-ca@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: jbrol-ca <jbrol-ca@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 12:00:00 by jbrol-ca          #+#    #+#             */
-/*   Updated: 2024/12/20 12:56:52 by jbrol-ca         ###   ########.fr       */
+/*   Updated: 2024/12/27 14:54:43 by jbrol-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/push_swap.h"
 
-static long	ft_atol(const char *s)
+long	ft_atol(const char *s)
 {
 	long	result;
 	int		sign;
@@ -71,16 +71,18 @@ void	init_stack_a(t_stack_node **a, char **argv)
 	while (argv[i])
 	{
 		if (check_syntax(argv[i]))
+		{
 			free_and_print_error(a);
+		}
 		n = ft_atol(argv[i]);
 		if (n > INT_MAX || n < INT_MIN)
-			if (*a)
-			{
-			free_stack_memory(a);
-			ft_printf("Error\n");
-			}
-		if (check_duplicate(*a, (int)n))
+		{
 			free_and_print_error(a);
+		}
+		if (check_duplicate(*a, (int)n))
+		{
+			free_and_print_error(a);
+		}
 		append_node(a, (int)n);
 		i++;
 	}

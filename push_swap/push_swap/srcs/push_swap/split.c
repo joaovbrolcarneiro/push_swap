@@ -6,7 +6,7 @@
 /*   By: jbrol-ca <jbrol-ca@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 20:58:11 by jbrol-ca          #+#    #+#             */
-/*   Updated: 2024/12/27 12:38:17 by jbrol-ca         ###   ########.fr       */
+/*   Updated: 2024/12/27 16:16:06 by jbrol-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,11 @@
 
 static int	count_words(char *str, char delim)
 {
-	int	word_count = 0;
-	int	in_word = 0;
+	int	word_count;
+	int	in_word;
 
+	word_count = 0;
+	in_word = 0;
 	while (*str)
 	{
 		if (*str == delim)
@@ -35,8 +37,10 @@ static char	*get_next_word(char **str_ptr, char delim)
 {
 	char	*start;
 	char	*word;
-	int		length = 0;
+	int		length;
+	int		i;
 
+	length = 0;
 	while (**str_ptr && **str_ptr == delim)
 		(*str_ptr)++;
 	start = *str_ptr;
@@ -45,11 +49,32 @@ static char	*get_next_word(char **str_ptr, char delim)
 	word = malloc((length + 1) * sizeof(char));
 	if (!word)
 		return (NULL);
-	for (int i = 0; i < length; i++)
+	i = 0;
+	while (i < length)
+	{
 		word[i] = start[i];
+		i++;
+	}
 	word[length] = '\0';
 	*str_ptr += length;
 	return (word);
+}
+
+static char	**allocate_result_array(int words_count)
+{
+	char	**result_array;
+
+	result_array = malloc((words_count + 2) * sizeof(char *));
+	if (!result_array)
+		return (NULL);
+	result_array[0] = malloc(1);
+	if (!result_array[0])
+	{
+		free(result_array);
+		return (NULL);
+	}
+	result_array[0][0] = '\0';
+	return (result_array);
 }
 
 char	**split(char *s, char c)
@@ -62,18 +87,11 @@ char	**split(char *s, char c)
 	if (!s)
 		return (NULL);
 	words_count = count_words(s, c);
-	result_array = malloc((words_count + 2) * sizeof(char *)); // +1 for result_array[0], +1 for NULL
+	result_array = allocate_result_array(words_count);
 	if (!result_array)
 		return (NULL);
-	result_array[0] = malloc(1); // Allocate for "\0"
-	if (!result_array[0])
-	{
-		free(result_array);
-		return (NULL);
-	}
-	result_array[0][0] = '\0';
 	str_ptr = s;
-	i = 1; // Start filling from index 1
+	i = 1;
 	while (i <= words_count)
 	{
 		result_array[i] = get_next_word(&str_ptr, c);
@@ -84,7 +102,7 @@ char	**split(char *s, char c)
 		}
 		i++;
 	}
-	result_array[i] = NULL; // Null-terminate the array
+	result_array[i] = NULL;
 	return (result_array);
 }
 
@@ -92,9 +110,14 @@ void	free_split_result(char **result_array)
 {
 	int	i;
 
-	if (!result_array)
-		return;
-	for (i = 0; result_array[i]; i++)
-		free(result_array[i]);
-	free(result_array);
+	if (result_array)
+	{
+		i = 0;
+		while (result_array[i])
+		{
+			free(result_array[i]);
+			i++;
+		}
+		free(result_array);
+	}
 }

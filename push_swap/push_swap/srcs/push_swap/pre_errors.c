@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   pre_errors.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbrol-ca <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jbrol-ca <jbrol-ca@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 20:58:11 by jbrol-ca          #+#    #+#             */
-/*   Updated: 2024/12/20 13:04:35 by jbrol-ca         ###   ########.fr       */
+/*   Updated: 2024/12/27 16:19:51 by jbrol-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,7 @@ int	check_syntax_pre(char *str)
 			i++;
 		else if (str[i] == '+' || str[i] == '-')
 		{
-			if (i > 0 && str[i - 1] != ' ')
-				return (1);
-			if (sign_found)
+			if (i > 0 && str[i - 1] != ' ' || sign_found)
 				return (1);
 			sign_found = 1;
 			i++;
@@ -35,10 +33,8 @@ int	check_syntax_pre(char *str)
 				return (1);
 		}
 		else if (str[i] >= '0' && str[i] <= '9')
-		{
 			while (str[i] >= '0' && str[i] <= '9')
 				i++;
-		}
 		else
 			return (1);
 	}
@@ -52,7 +48,7 @@ int	check_int_range_pre(long n)
 	return (0);
 }
 
-int	check_duplicate_pre (int value, int *seen_numbers, int seen_size)
+int	check_dup_pre(int value, int *seen_numbers, int seen_size)
 {
 	int	i;
 
@@ -66,3 +62,9 @@ int	check_duplicate_pre (int value, int *seen_numbers, int seen_size)
 	return (0);
 }
 
+int	ft_isdigit(int c)
+{
+	if (c >= '0' && c <= '9')
+		return (1);
+	return (0);
+}
